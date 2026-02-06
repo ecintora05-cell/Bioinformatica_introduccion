@@ -36,3 +36,4 @@ apropos("clust")
 #la siguiente función te da opciones de paqueterias que puedes usar a partir de 
 #una palabra clave, solo funciona si se autocompleta
 ??DNase
+usethis::use_git(message = "Terminación del primer capitulo de Introduccion a R")

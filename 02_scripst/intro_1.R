@@ -18,3 +18,4 @@ usethis::use_git_config(
   user.email = "ecintora05@alumnos.uaq.mx")
 #| eval: false
 usethis::use_github(private = TRUE)
+

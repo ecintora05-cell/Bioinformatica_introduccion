@@ -39,14 +39,16 @@ matriz2<-matrix(7:12,nrow = 2)
 #se unen las matrices por renglones
 matriz_unida<-rbind(matriz1,matriz2)
 matriz_unida
-#Al unir las matrices por filas, R suma todos los elementos y recalcula el num 
-#de columnas y filas, empieza a rellenar acorde al orden de las filas
+#Al unir las matrices por filas, R suma todos los elementos  
+# empieza a rellenar acorde al orden de las filas
 #4.6 Uso de cbind() para unir matrices por columnas
 #La función cbind() se utiliza para unir matrices por columnas
 #unir matrices por colunas
 matriz_unida_columnas<-cbind(matriz1,matriz2)
 matriz_unida_columnas
 #Si las matrices se unen por columnas, el num de filas se respeta
+#Se puede usar la función View() para observar las tablas en una ventana, 
+#solo funciona con datos tabulares
 #Ejercicio. Realizar una matriz
 M1<-matrix(1:7,nrow = 3,ncol = 4);M1
 #Si los datos de la matriz no alcanzan a llenarlo, la matriz se llena automaticamente
@@ -55,7 +57,7 @@ M2<-matrix(1:7,nrow = 3,ncol = 3);M2
 #Si el vector tiene mas elementos que las dimenciones de la matiz, crea nuevas columnas
 #y se llena el resto
 M3<-cbind(M1,M2)
-M4<-rbind(M1[,-4],M2)#Para unir la smatrices debe de tener el mismo numero de filas
+M4<-rbind(M1[,-4],M2)#Para unir las matrices debe de tener el mismo numero de filas
 M3;M4
 #4.7 Operaciones con matrices
 #Multiplicacion de escalar de una matriz
@@ -90,18 +92,24 @@ M1 #Pära darle nombre, deben de ser la misma cantidad de filas y columnas con
 
 #Ejercicios
 #1 Genera dos matrices aleatorias de tamaño 3x3 y luego suma ambas matrices
-
+M1<-matrix(c(3,6,7,8,9,2,5,9,10),nrow = 3); M2<-matrix(c(1,4,6,3,6,34,6,7,12),nrow = 3)
+M1+M2
 #2 Crea dos matrices aleatorias, una de tamaño 2x3 y otra de tamaño 3x4. Calcula 
 #su producto matrical
+M3<-M1[1:2,]; M4<-matrix(c(1,5,3,6,12,4,4,6,2,23,67,4),nrow = 3, ncol = 4)
+M3%*%M4
 
 #3 Crea una matriz aleatoria de tamaño 4x3 y encuentra su matriz transpuesta
 
-#4 Genera una matriz cuadrada aleatoria de tamaño 4x4 calcula su determinante
+#4 -Genera una matriz cuadrada aleatoria de tamaño 4x4 calcula su determinante
+M2<-matrix(sample(1:50,16),nrow = 4,ncol = 4)
+det(M2)
 
 #5 Crea una matriz cuadrada aleatoria de tamaño 3x3 y encuentra su inversa
 
-#6 Genera una matriz aleatoria 5x5 y extrae la tercera fila y la segunda columna
-
+#6 -Genera una matriz aleatoria 5x5 y extrae la tercera fila y la segunda columna
+M1<-matrix(sample(1:50,25),ncol = 5,nrow = 5); M2<-M1[-c(1:2,4:5),-c(1,3:5)];M2
+M2<-M1[3,];M3<-M1[,2]; M2;M3
 #7 Crea una matriz diagonal aleatoria de tamaño 4x4 y encuentra sus elementos diagonales
 
 #8 Define una matriz de coeficientes A y un vector de terminos constantes b.
@@ -110,6 +118,16 @@ M1 #Pära darle nombre, deben de ser la misma cantidad de filas y columnas con
 #9 Genera una matriz aleatoria de tamaño 3x3 y multiplica cada uno de sus elementos
 #por un escalar, por ejemplo, 2
 
-#10 Crea una matriz simétrica aleatoria de tamaño 4x4 y verifica si es simétrica
+#10 -Crea una matriz simétrica aleatoria de tamaño 4x4 y verifica si es simétrica
 
-#11 Comparación de Expresiones Génica entre Condiciones
+#11 Comparación de Expresión Génica entre Condiciones
+#Descripción: Supongamos que tienes una matriz de expresión génica con 6 genes y 4 condiciones experimentales.
+#Crea una matriz llamada expresion_genica con 6 genes y 4 condiciones (rellena con datos aleatorios).
+#Asigna nombres de genes a las filas y nombres de condiciones a las columnas.
+#Calcula el promedio de expresión génica para cada gen.
+exp_gen<-matrix(sample(1:100000,24),nrow = 6,ncol = 4)
+rownames(exp_gen)<-c("Wtn","shc","HCM","P53","SpikeS","NTF")
+colnames(exp_gen)<-c("Control","Agua","Inflamación","Necrosis")
+exp_gen
+apply(exp_gen,1,mean)#La función apply toma datos de una matriz, 1 para filas y para columnas
+# y luego la opración atritmeotica
